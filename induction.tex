@@ -1,0 +1,257 @@
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+
+\title{Assessment -- Mathematical Induction}
+\author{Serena Shao}
+\date{November 9, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section*{\Huge\underline{Proof 1}}
+\vspace{-0.5cm}
+\section*{Question 8}
+\vspace{-0.7cm}
+\textbf{Problem--Induction Worksheet: Summations}
+
+\vspace{0.3cm}
+
+Use mathematical induction to prove that
+
+\[
+1\cdot 2^1+2\cdot 2^2+3\cdot 2^3
++\cdots+n\cdot 2^n
+=(n-1)2^{n+1}+2
+\]
+
+for all positive integers $n$.
+
+\textbf{Proof:}
+We will proceed by mathematical induction on $n$.
+
+\[
+P(n):\quad
+\sum_{i=1}^{n}i2^i=(n-1)2^{n+1}+2
+\]
+
+\subsection*{Base Case}
+
+We first verify the statement for $n=0$.
+
+Since the sum contains no terms when $n=0$,
+the left-hand side is $0$.
+
+\[
+\begin{aligned}
+\sum_{i=1}^{0}i2^i &= 0,\\
+(0-1)2^{0+1}+2 &= -2+2=0.
+\end{aligned}
+\]
+
+Thus, $P(0)$ is true, so the base case holds.
+
+\subsection*{Inductive Step}
+
+We need to show that $P(k)$ implies $P(k+1)$.
+
+Assume $P(k)$ is true for some integer $k\geq 0$.
+
+\[
+P(k):\quad
+\sum_{i=1}^{k}i2^i=(k-1)2^{k+1}+2
+\]
+
+We want to show that
+
+\[
+P(k+1):\quad
+\sum_{i=1}^{k+1}i2^i=k2^{k+2}+2.
+\]
+
+Starting with the left-hand side of $P(k+1)$,
+
+\[
+\begin{aligned}
+\sum_{i=1}^{k+1}i2^i
+&=\sum_{i=1}^{k}i2^i+(k+1)2^{k+1}\\[6pt]
+&=(k-1)2^{k+1}+2+(k+1)2^{k+1}\\[6pt]
+&=(k-1+k+1)2^{k+1}+2\\[6pt]
+&=2k\cdot 2^{k+1}+2\\[6pt]
+&=k2^{k+2}+2.
+\end{aligned}
+\]
+
+This is the statement $P(k+1)$.
+Thus, $P(k)$ implies $P(k+1)$, so by induction,
+$P(n)$ is true for all $n\in\mathbb{N}$.
+
+\hfill $\square$
+
+\vspace{0.5cm}
+
+\newpage
+
+\section*{\Huge\underline{Proof 2}}
+
+\section*{Question 12}
+\vspace{-0.7cm}
+\textbf{Problems--Induction Worksheet: Miscellaneous}
+
+\vspace{0.3cm}
+
+Prove that any finite collection of squares of
+various sizes can be cut into polygonal pieces
+and rearranged to form a single square.
+
+\textbf{Proof:}
+We will proceed by mathematical induction on
+the number of squares, $n$.
+
+$P(n)$: Any collection of $n$ squares can be
+cut into finitely many polygonal pieces and
+rearranged to form a single square.
+
+\subsection*{Base Case}
+
+We begin with $n=1$, since the problem concerns
+a nonempty collection of squares, so $n\geq 1$.
+
+For $n=1$, the collection consists of exactly
+one square, which already has the desired shape.
+No cutting or rearrangement is necessary.
+
+Thus, $P(1)$ is true.
+
+\subsection*{Inductive Step}
+
+We need to show that $P(k)$ implies $P(k+1)$.
+
+Assume $P(k)$ is true for some integer $k\geq 1$.
+
+Consider an arbitrary collection of $k+1$
+squares with side lengths
+
+\[
+a_1,a_2,\ldots,a_k,a_{k+1}.
+\]
+
+By the inductive hypothesis, the first $k$
+squares can be cut and rearranged into a
+single square with side length $s$, where
+
+\[
+s^2=\sum_{i=1}^{k}a_i^2.
+\]
+
+We now need to combine this square with
+the remaining square of side length $a_{k+1}$.
+
+To justify this geometrically, consider two
+arbitrary squares with side lengths $a$ and $b$.
+
+Place four congruent right triangles, each
+with legs $a$ and $b$, inside a larger square
+of side length $a+b$, arranging them so that
+their hypotenuses bound a central square.
+
+\begin{center}
+    \includegraphics[width=0.45\textwidth]{square_diagram.png}
+\end{center}
+
+By the Pythagorean theorem, the central
+square has side length
+
+\[
+c=\sqrt{a^2+b^2}.
+\]
+
+The area of the larger square is
+
+\[
+(a+b)^2=a^2+2ab+b^2.
+\]
+
+The four triangles have total area
+
+\[
+4\left(\frac{ab}{2}\right)=2ab.
+\]
+
+Therefore, the area of the central square is
+
+\[
+(a+b)^2-2ab=a^2+b^2=c^2.
+\]
+
+The diagram shows that the square in the middle
+has the same area as the two original squares
+combined. However, having the same area does
+not automatically mean we can rearrange the
+squares into that shape. To do this, we can
+cut up the two original squares into smaller
+pieces and rearrange them so that they fit
+together to form one square, without leaving
+any gaps or overlapping.
+
+This is important for our induction proof
+because, after combining the first $k$ squares
+into one, we can use the same cutting method
+to combine that square with the remaining
+square. Therefore, we can turn $k+1$ squares
+into one square.
+
+Applying this construction to the square
+of side length $s$ and the square of side
+length $a_{k+1}$, we obtain a single square
+of side length $t$, where
+
+\[
+\begin{aligned}
+t^2
+&=s^2+a_{k+1}^2\\
+&=\sum_{i=1}^{k}a_i^2+a_{k+1}^2\\
+&=\sum_{i=1}^{k+1}a_i^2.
+\end{aligned}
+\]
+
+This is the statement $P(k+1)$.
+Thus, the original $k+1$ squares can be
+cut into finitely many polygonal pieces
+and rearranged into a single square.
+
+This establishes $P(k+1)$.
+
+Therefore, $P(k)$ implies $P(k+1)$.
+
+\hfill $\square$
+
+\vspace{0.5cm}
+
+\textbf{Reviewed by: Pragya Khandelwal}
+
+
+\vspace{0.5cm}
+
+\textbf{Sources and AI Usage}
+
+The diagram used in Proof 2 is not my original work.
+I searched online for a diagram and found it here:
+\url{https://www.geom.uiuc.edu/~demo5337/Group3/Choupei.html}
+
+I used AI to help me learn how to use LaTeX,
+understand its syntax and formatting, and navigate
+Visual Studio Code (VS Code), including compiling
+and troubleshooting my document.
+
+
+\end{document}
